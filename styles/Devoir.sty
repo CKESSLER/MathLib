@@ -1,0 +1,20 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{Devoir}
+
+\usepackage{macro}
+
+\usepackage[a4paper]{geometry}
+\geometry{top=2cm,bottom=2cm,left=2cm,right=2cm}
+
+
+
+
+ 
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand{\thesubsection}{Partie \Alph{subsection})}
+\renewcommand{\thesubsubsection}{\thesubsection.\ \alph{subsubsection}}              
+
+
+
+\setlist[enumerate,1]{label=\textbf{\arabic*.},ref=\arabic*}
+\setlist[enumerate,2]{label=\textbf{\alph*)},ref=\arabic{enumi}.\alph*}

@@ -1,0 +1,300 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{macro}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[french]{babel}
+\frenchbsetup{StandardItemLabels}
+\frenchbsetup{SuppressWarning}
+\usepackage{hhline}
+\usepackage{xspace}
+\usepackage{amssymb,amsmath,amsthm,amscd,amsfonts}
+\usepackage{mathrsfs}
+% \usepackage[shortlabels]{enumitem}
+\usepackage{enumitem}
+\usepackage{exscale,relsize}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{textcomp}
+\usepackage[absolute,showboxes,overlay]{textpos}
+\usepackage{pgf,tikz}
+\usepackage{fancybox}
+\usetikzlibrary{arrows}
+\usetikzlibrary{patterns}
+\usepackage{cancel}
+\usepackage{./styles/boiboites}
+\usepackage{multicol}
+\usepackage{array}
+\usepackage{hyperref}
+\usepackage{tabvar}
+%\usepackage{variations}
+\usepackage{pst-all}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% PACKAGES POUR LA PHYSIQUE-CHIMIE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[squaren,Gray]{SIunits}
+\usepackage{chemist}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{datetime}
+\usepackage{fancyhdr}               % En-t�tes et pied de page personnalis�s
+\usepackage{lastpage}               % Pour le compteur du nombre de pages
+
+\newcommand{\gras}[1]{\boldmath{\textbf{#1}}\unboldmath}
+\newcommand{\sci}[1]{\texttt{#1}}
+\newcommand{\titre}[1]{\centerline{\LARGE{\gras{#1}}}}
+\newcommand{\Titre}[1]{\centerline{\Huge{\gras{#1}}}}
+
+\newcommand{\ctl}[1]{\centerline{#1}}
+\newcommand{\esp}{\mbox{\quad}}
+
+
+\newcommand{\tri}{\ensuremath{\triangleright}\xspace}
+\newcommand{\lo}{\ensuremath{\diamond}\xspace}
+\newcommand{\point}{\ensuremath{\centerdot}\xspace}
+\newcommand{\rond}{\ensuremath{\circ}\xspace}
+
+%% ENVIRONNEMENT POUR DEFINITION ET THEOREMES
+\theoremstyle{plain}% default
+\newtheorem{thm}{Théorème}[section]
+\newtheorem{lem}[thm]{Lemme}
+\newtheorem{prop}[thm]{Propriété}
+\newtheorem*{cor}{Corollaire}
+%\theoremstyle{definition}
+\newtheorem{defn}{Définition}[section]
+\newtheorem{exmp}{Exemple}[section]
+\newtheorem{exer}[exmp]{Exercice}
+%\theoremstyle{remark}
+\newtheorem*{remk}{Remarque}
+\newtheorem*{note}{Note}
+\newtheorem{cas}{Cas}
+
+% \newenvironment{listetri}{\begin{itemize}\renewcommand{\labelitemi}{$\triangleright$}}{\end{itemize}}
+% \newenvironment{listelo}{\begin{itemize}\renewcommand{\labelitemi}{$\diamond$}}{\end{itemize}}
+
+\newlist{lt}{itemize}{1}
+\setlist[lt]{label=$\triangleright$}
+\newlist{ld}{itemize}{1}
+\setlist[ld]{label=$\diamond$}
+
+
+%\newboxedtheorem[thcounter=section, background=blue!5, titlebackground=blue!15]{thm}{Théorème}{cthm}
+\newboxedtheorem[thcounter=section, background=blue!5, titlebackground=blue!15]{defip}{Définition/Proposition}{cthm}
+\newboxedtheorem[thcounter=section, background=blue!5, titlebackground=blue!15]{defit}{Définition/Théorème}{cthm}
+\newboxedtheorem[thcounter=section, background=blue!5, titlebackground=blue!15]{propo}{Proposition}{cthm}
+\newboxedtheorem[thcounter=section, background=blue!5, titlebackground=blue!15]{defin}{Définition}{cthm}
+\newboxedtheorem[thcounter=section, background=blue!5, titlebackground=blue!15]{defins}{Définitions}{cthm}
+\newboxedtheorem[thcounter=section, background=blue!5, titlebackground=blue!15]{metho}{Méthode}{cthm}
+%\newboxedtheorem[thcounter=section, background=blue!5, titlebackground=blue!15]{cor}{Corollaire}{cthm}
+\newboxedtheorem[thcounter=section, background=blue!5, titlebackground=blue!15]{form}{Formule}{cthm}
+\newboxedtheorem[thcounter=section, background=blue!5, titlebackground=blue!15]{exem}{Exemple}{cthm}
+% \newboxedtheorem[thcounter=section, background=blue!5, titlebackground=blue!15]{raps}{Rappels}{cthm}
+\newboxedtheorem[thcounter=section, background=blue!5, titlebackground=blue!15]{Rap}{Rappel}{cthm}
+\newboxedtheorem[thcounter=section, background=blue!0, titlebackground=blue!0, titleboxcolor = black, boxcolor = black]{retenir}{Retenir}{}
+%\newboxedtheorem[thcounter=section, background=blue!5, titlebackground=blue!15]{lem}{Lemme}{cthm}
+\newboxedtheorem[background=blue!5, titlebackground=blue!15]{schema}{Schéma type}{}
+\newboxedtheorem[background=blue!5, titlebackground=blue!15]{synthaxe}{Synthaxe}{}
+\renewcommand{\thecthm}{\arabic{section}.\arabic{cthm}}
+
+\usepackage{bbding}
+\newcommand{\app}{\noindent\PencilRightDown \;\;\textbf{Application}\\}
+
+
+
+\newcounter{compteur}
+\newcommand{\exo}{\refstepcounter{compteur}\vspace{3mm}\noindent\textbf{Exercice\ \thecompteur .\ }}
+\newcommand{\Exo}{\refstepcounter{compteur}\noindent\textbf{Exercice\ \thecompteur .\ }}
+
+
+\newenvironment{ex}{\refstepcounter{cthm}\begin{description}\item[Exemple \thecthm \ :\ \,]}{\end{description}}
+\newenvironment{exs}{\refstepcounter{cthm}\noindent\gras{Exemples \thecthm \ :\quad}}{}
+\newenvironment{exems}{\refstepcounter{cthm}\noindent\gras{Exemples \thecthm \ :\quad}\begin{lt}}{\end{lt}}
+\newenvironment{cex}{\refstepcounter{cthm}\begin{description}\item[Contre Exemple \thecthm \ :\ \,]}{\end{description}}
+\newenvironment{cexs}{\refstepcounter{cthm}\noindent\gras{Contre exemples \thecthm \ :\quad}}{}
+
+
+\newenvironment{methode}{\refstepcounter{cthm}\begin{description}\item[M�thode \thecthm \  :\ \,]}{\end{description}}
+\newenvironment{att}{\begin{description}\item[Attention :\ \,]}{\end{description}}
+\newenvironment{rap}{\begin{description}\item[Rappel :\ \,]}{\end{description}}
+\newenvironment{raps}{\noindent\gras{Rappels \ :\quad}\begin{itemize}}{\end{itemize}}
+\newenvironment{nota}{\begin{description}\item[Notation :\ \,]}{\end{description}}
+\newenvironment{notas}{\noindent\gras{Notations \ :\quad}\begin{itemize}}{\end{itemize}}
+\newenvironment{remarq}{\refstepcounter{cthm}\begin{description}\item[Remarque \thecthm \ :\ \,]}{\end{description}}
+\newenvironment{rems}{\refstepcounter{cthm}\noindent\gras{Remarques \thecthm \ :\quad}\begin{lt}}{\end{lt}}
+
+
+\newcommand{\com}[1]{\hfill{\small(\emph{#1})}}
+\newcommand{\Com}[1]{\hfill{\small\{\emph{#1}\}}}
+
+
+
+\newcommand{\conc}[1]{\begin{center} \ovalbox{\, \gras{#1}\,}\end{center}}
+\newcommand{\Conc}[1]{\noindent\begin{center}\ovalbox{\begin{minipage}{110mm}\begin{center}\gras{#1}\end{center}\end{minipage}}\end{center}}
+
+\newcommand{\consignes}[1]{\noindent\begin{center}\Ovalbox{\begin{minipage}{110mm}\begin{center}{#1}\end{center}\end{minipage}}\end{center}}
+\newcommand{\cadre}[1]{\noindent\begin{center}\Ovalbox{\begin{minipage}{110mm}#1\end{minipage}}\end{center}}
+
+\newcommand{\Syst}[2]{ \left\{ \begin{array}{*{#1}l}  #2  \end{array} \right. }
+
+\newcommand{\appli}[5]{\begin{array}{rcccl}
+ #1 & : & #2  & \longrightarrow & #3\\
+ & & #4 &\longmapsto &#5 \end{array} }
+
+
+
+\newcommand{\dsp}{\displaystyle}
+\newcommand{\dis}{\displaystyle}
+
+\newcommand{\bs}{\backslash}
+\renewcommand{\le}{\leqslant}
+\renewcommand{\ge}{\geqslant}
+\renewcommand{\ieme}{\ensuremath{^{i\grave eme}}\xspace}
+\renewcommand{\iemes}{\ensuremath{^{i\grave emes}}\xspace}
+\newcommand{\eme}{\ensuremath{^{\grave eme}}\xspace}
+\newcommand{\emes}{\ensuremath{^{\grave emes}}\xspace}
+\newcommand{\er}{\ensuremath{^{er}}\xspace}
+\newcommand{\ere}{\ensuremath{^{\grave ere}}\xspace}
+
+\newcommand{\id}[1][E]{\ensuremath{\text{Id}_#1}\xspace}
+
+\renewcommand{\l}{\left}
+\renewcommand{\r}{\right}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% NOUVELLES COMMANDES POUR SYMBOLES MATHS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\minf}{{-\infty}}
+\newcommand{\pinf}{{+\infty}}
+
+\newcommand{\Interv}[2]{\ensuremath{[\![#1\,;\,#2]\!]}}
+
+\newcommand{\et}{\quad \text{ et } \quad}
+\newcommand{\ou}{\quad \text{ ou } \quad}
+
+\newcommand{\T}{\mathcal{T}}
+\newcommand{\A}{\mathcal{A}}
+
+
+
+\newcommand{\eps}{\varepsilon}
+\newcommand{\lam}{\lambda}
+\newcommand{\dt}{\,\mathrm{d}t}
+\newcommand{\dx}{\,\mathrm{d}x}
+%\newcommand{\deriv}{\mathrm{d}}
+\renewcommand{\d}{\,\mathrm{d}}
+\newcommand{\e}{\mathrm{e}}
+\renewcommand{\phi}{\varphi}
+
+
+\DeclareMathOperator{\sh}{sh}
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\E}{E}
+\DeclareMathOperator{\V}{V}
+\DeclareMathOperator{\card}{Card}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\vect}{Vect}
+\DeclareMathOperator{\im}{Im}
+
+\renewcommand{\th}{\operatorname{th}}
+\renewcommand{\P}{\operatorname{P}}
+\renewcommand{\ker}{\operatorname{Ker}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SYMBOLES MATHS POUR LA CONVERGENCE (Suites, Séries...)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\conv}{\longrightarrow} % Raccourci pour la fl�che de convergence
+\newcommand{\tend}[1]{\; \xrightarrow[\; #1 \; ]{} \;}% Fl�che de limite extensible
+% \newcommand{\tend}[1]{\underset{#1}{\longrightarrow}}% Equivalent au voisinage
+\newcommand{\eq}[1]{\underset{#1}{\sim}}% Equivalent au voisinage
+\newcommand{\egv}[1]{\underset{#1}{=}}% Egal au voisinage
+\newcommand{\negl}[1]{\mathrm{o}(#1)}% Petit "o"
+\newcommand{\dom}[1]{\mathrm{O}(#1)}% Grand "O"
+\newcommand{\po}{\mathrm{o}}% Petit "o"
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SYMBOLES POUR LA DEFINITION DES APPLICATIONS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\dans}{\longrightarrow} %f de I dans J
+\newcommand{\asso}{\longmapsto} % x -> f(x)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SYMBOLES RAISONNEMENT LOGIQUE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\impl}{\,\Rightarrow\,} %implication
+\newcommand{\arr}{\,\Rightarrow\,} %implication
+\newcommand{\iif}{\, \Leftrightarrow \,} %equivalence
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SYMBOLES LIMITES FONCTIONS - SOMME NUMERIQUE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\lims}{\lim\limits_{n\to\pinf}}
+\newcommand{\limf}[2]{\lim\limits_{#1\to #2}}
+\newcommand{\som}[3]{\sum_{#1=#2}^{#3}}
+
+
+\newcommand{\0}{\ensuremath{\vec{0}}\xspace}
+\newcommand{\vu}{\ensuremath{\vec{u}}\xspace}
+\newcommand{\ve}{\ensuremath{\vec{e}}\xspace}
+\newcommand{\vv}{\ensuremath{\vec{v}}\xspace}
+\newcommand{\vw}{\ensuremath{\vec{w}}\xspace}
+\newcommand{\vi}{\ensuremath{\vec{\imath}}\xspace}
+\newcommand{\vj}{\ensuremath{\vec{\jmath}}\xspace}
+\newcommand{\veps}{\ensuremath{\vec{\varepsilon}}\xspace}
+\newcommand{\rep}{\ensuremath{(O,\,\vec{\imath},\,\vec{\jmath}\,)}\xspace}
+\newcommand{\base}{\ensuremath{(\vec{\imath} \,; \,\vec{\jmath}\,;\,\vec{k})}\xspace}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% SYMBOLES ENSEMBLES C,R,Q,D,Z,N...
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\K}{\ensuremath{\mathbb{K}}\xspace}
+\newcommand{\R}{\ensuremath{\mathbb{R}}\xspace}
+\newcommand{\N}{\ensuremath{\mathbb{N}}\xspace}
+\newcommand{\C}{\ensuremath{\mathbb{C}}\xspace}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}\xspace}
+\newcommand{\D}{\ensuremath{\mathbb{D}}\xspace}
+\newcommand{\Q}{\ensuremath{\mathbb{Q}}\xspace}
+\newcommand{\RX}{\ensuremath{\mathbb{R}[X]}\xspace}
+\newcommand{\CX}{\ensuremath{\mathbb{C}[X]}\xspace}
+
+
+\renewcommand{\L}{\ensuremath{\mathcal{L}}\xspace}
+\newcommand{\B}{\ensuremath{\mathcal{B}}\xspace}
+
+\newcommand{\M}[1]{\ensuremath{\mathcal M_{#1}(\R)}\xspace}
+\newcommand{\Mn}{\ensuremath{\mathcal M_n(\R)}\xspace}
+\newcommand{\Mnp}{\ensuremath{\mathcal M_{n,p}(\R)}\xspace}
+
+
+\newcommand{\liste}[3]{\ensuremath{{#1}_{#2},\ldots,\,{#1}_{#3}}\xspace}
+\newcommand{\lliste}[3]{\ensuremath{{#1}_{#2},\,{#1}_{2},\ldots,\,{#1}_{#3}}\xspace}
+\newcommand{\listevec}[3]{\ensuremath{\vec{#1}_{#2},\ldots,\,\vec{#1}_{#3}}\xspace}
+\newcommand{\Listevec}[3]{\ensuremath{\vec{#1}_{#2},\,\vec{#1}_{2},\ldots,\,\vec{#1}_{#3}}\xspace}
+\newcommand{\famille}[3]{\ensuremath{(\vec{#1}_{#2},\ldots,\,\vec{#1}_{#3})}\xspace}
+\newcommand{\Famille}[3]{\ensuremath{\big(\vec{#1}_{#2},\ldots,\,\vec{#1}_{#3}\big)}\xspace}
+\newcommand{\ffamille}[3]{\ensuremath{(\vec{#1}_{#2},\,\vec{#1}_2,\,\ldots,\,\vec{#1}_{#3})}\xspace}
+\newcommand{\Ffamille}[3]{\ensuremath{\big(\vec{#2}_1,\,\vec{#1}_2,\,\ldots,\,\vec{#1}_{#3}\big)}\xspace}
+\newcommand{\famcompletee}[4]{\ensuremath{(\vec{#1}_{#2},\ldots,\,\vec{#1}_{#3},\,\vec{#1}_{#3+1},\ldots,\,\vec{#1}_{#4})}\xspace}
+\newcommand{\Famcompletee}[4]{\ensuremath{\big(\vec{#1}_{#2},\ldots,\,\vec{#1}_{#3},\,\vec{#1}_{#3+1},\ldots,\,\vec{#1}_{4}\big)}\xspace}
+\newcommand{\ffamcompletee}[4]{\ensuremath{(\vec{#1}_{#2},\,\vec{#1}_2,\ldots,\,\vec{#1}_{#3},\,\vec{#1}_{#3+1},\ldots,\,\vec{#1}_{#4})}\xspace}
+\newcommand{\FamilleImage}[4]{\ensuremath{\big(#4(\vec{#1}_{#2}),\ldots,\,#4(\vec{#1}_{#3})\big)}\xspace}
+\newcommand{\CL}[4]{\ensuremath{{#1}_{#3}\vec{#2}_{#3} + \cdots + {#1}_{#4}\vec{#2}_{#4}}\xspace}
+\newcommand{\CLImage}[5]{\ensuremath{{#1}_{#3}{#5}(\vec{#2}_{#3}) + \cdots + {#1}_{#4}{#5}(\vec{#2}_{#4})}\xspace}
+\newcommand{\ps}[2]{\ensuremath{\langle\,\overrightarrow{#1},\,\overrightarrow{#2}\,\rangle}}
+\newcommand{\Ps}[2]{\ensuremath{\langle\,#1,\,#2\,\rangle}}

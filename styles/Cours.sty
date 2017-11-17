@@ -1,0 +1,65 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{Cours}
+
+\usepackage{./styles/macro_V2}
+
+\usepackage[a4paper]{geometry}
+\voffset-1.74cm
+\oddsidemargin-1cm
+\headheight0cm
+\headsep0cm
+\topmargin0cm
+\textwidth17.5cm
+\textheight26.7cm
+\footskip 0cm
+
+
+\newcommand{\tbcfamily}{\fontfamily{pag}\selectfont}
+
+
+\pagestyle{fancy}
+\setlength{\headsep}{0.8cm}      %Espace entre header et maketitle
+    % On r�gle l'�paisseur des r�glures de s�paration
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+    % On vide l'en-t�te
+\fancyhead[L]{}
+\fancyhead[R]{}
+\fancyhead[C]{www.groupe-reussite.fr} %En-tête
+		% Pied de page
+\fancyfoot[C]{Groupe R\'eussite }
+%\fancyfoot[C]{\ttfamily\footnotesize 2015/2016}
+\fancyfoot[R]{\tbcfamily\bfseries{\footnotesize\itshape
+                 \let \tbreak=\ \@titleref}  \quad \thepage\ / \pageref{LastPage}} % \tbreak transform� en espace
+                 %\@titleref}
+
+% --- Grands titres des documents ------
+
+  % Commande pour sauter des lignes dans les titres
+  % mais pas dans les pieds de page
+\newcommand{\tbreak}{\\}
+\def\@titleref{\relax}
+  % Titres simples, sans information � droite
+\renewcommand{\maketitle}[2]{%
+    % Param�tre 1 : Type de feuille
+    % Param�tre 2 : Titre principal
+  \gdef\@titleref{#2}
+  \begingroup
+   % \advance \leftskip by 17.19em \itshape\tbcfamily\noindent www.groupe-reussite.fr
+    %\vskip 4pt
+    %\hrule height 1.2pt
+    %\j'ai enlever les lignes du dessus pour pouvoir mettre un header sur toutes les pages
+    \vskip 10pt
+    \advance\rightskip by 1em
+    \vbox{\begin{center}\noindent\LARGE\tbcfamily\bfseries\itshape#1 : #2\par\end{center}}
+    \vskip 5pt
+    \hrule height 0pt
+    \par \bigskip
+    \setcounter{section}{0}
+  \endgroup
+}
+
+\renewcommand{\thesection}{\Roman{section}}
+\renewcommand{\thesubsection}{\thesection.\ \arabic{subsection}}
+\renewcommand{\thesubsubsection}{\arabic{subsubsection}}
+

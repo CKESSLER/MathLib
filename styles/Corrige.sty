@@ -1,0 +1,74 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{Corrige}
+
+\usepackage{macro}
+
+\usepackage[a4paper,landscape]{geometry}
+\columnsep1.5cm
+%\columnseprule1pt
+\voffset-1.04cm
+\oddsidemargin-1cm
+\headheight0cm
+\headsep0cm
+\topmargin0cm
+\textwidth26.7cm
+\textheight17.5cm
+\footskip1cm
+
+\newcounter{cA}[section]
+\newcounter{cB}[cA]
+\newcommand{\Qq}{\refstepcounter{cA}\noindent\textbf{\thecA . }}
+\newcommand{\QQ}{\refstepcounter{cA}}
+\newcommand{\q}{\refstepcounter{cB}\noindent\textbf{\thecA .\alph{cB}) }}
+
+
+
+\newcommand{\tbcfamily}{\fontfamily{pag}\selectfont}
+
+\pagestyle{fancy}
+    % On r�gle l'�paisseur des r�glures de s�paration
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.4pt}
+    % On vide l'en-t�te
+\fancyhead[L]{}
+\fancyhead[R]{}
+\fancyhead[C]{}
+		% Pied de page
+\fancyfoot[L]{}%{\ttfamily\footnotesize Lyc�e Edgar Quinet, Bourg en Bresse}
+\fancyfoot[C]{\ttfamily\footnotesize Groupe R\'eussite}%{\ttfamily\footnotesize 2013/2014}
+\fancyfoot[R]{\tbcfamily\bfseries{\footnotesize\itshape
+                 \let \tbreak=\ \@titleref}  \quad \thepage\ / \pageref{LastPage}} % \tbreak transform� en espace 
+                 %\@titleref}
+                 
+% --- Grands titres des documents ------
+
+  % Commande pour sauter des lignes dans les titres
+  % mais pas dans les pieds de page
+\newcommand{\tbreak}{\\}
+\def\@titleref{\relax}
+  % Titres simples, sans information � droite
+\renewcommand{\maketitle}[2]{%
+    % Param�tre 1 : Type de feuille
+    % Param�tre 2 : Titre principal
+  \gdef\@titleref{#2}
+  \begingroup
+    \advance\leftskip by 19em \itshape\tbcfamily\noindent www.groupe-reussite.fr
+    \vskip 4pt
+    \hrule height 1.2pt
+    \vskip 5pt
+    \advance\rightskip by 1em
+    \vbox{\noindent\LARGE\tbcfamily\bfseries\itshape#2\par}%
+    \vskip 5pt
+    \hrule height 0pt%
+    \par%\bigskip
+    \setcounter{section}{0}
+  \endgroup
+}
+ 
+\renewcommand{\thesection}{Exercice \arabic{section}}
+\renewcommand{\thesubsection}{}
+
+\newlist{qu}{enumerate}{2}
+\setlist[qu,1]{align=left,listparindent=\parindent,itemsep=2ex,label=\textbf{\arabic*.},ref=\arabic*,leftmargin=0pt,labelwidth=0pt,itemindent=*}
+\setlist[qu,2]{align=left,listparindent=\parindent,itemsep=2ex,label=\textbf{\alph*)},ref=\arabic{enumi}.\alph*,leftmargin=0pt,labelwidth=0pt,itemindent=*}
+
